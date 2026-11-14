@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | PrepAI</title>
+
+<style>
+
+/* =================================
+   PREPAI - PREMIUM LOGIN UI
+================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg: #090711;
+    --card: #171321;
+    --purple: #9565f5;
+    --purple-light: #b69aff;
+    --text: #ffffff;
+    --muted: #a49bad;
+    --border: rgba(255,255,255,0.09);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    position: relative;
+    isolation: isolate;
+}
+
+/* AMBIENT BACKGROUND */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.22;
+    z-index: -1;
+    pointer-events: none;
+    animation: ambient 10s ease-in-out infinite alternate;
+}
+
+body::before {
+    background: #7839df;
+    top: -180px;
+    left: -150px;
+}
+
+body::after {
+    background: #4932a4;
+    bottom: -200px;
+    right: -130px;
+    animation-delay: -5s;
+}
+
+@keyframes ambient {
+    from {
+        transform: translate(0,0) scale(1);
+    }
+    to {
+        transform: translate(50px,35px) scale(1.15);
+    }
+}
+
+/* MAIN CARD */
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+
+    display: flex;
+    padding: 12px;
+
+    background: rgba(25,20,35,0.88);
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 24px;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,0.55),
+        0 0 60px rgba(137,83,225,0.08);
+
+    backdrop-filter: blur(25px);
+
+    animation: cardEnter 0.9s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* LEFT PANEL */
+
+.left {
+    flex: 1;
+    min-width: 0;
+    min-height: 650px;
+
+    padding: 38px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(14,9,25,.10) 0%,
+            rgba(14,9,25,.20) 35%,
+            rgba(14,9,25,.92) 100%
+        ),
+        linear-gradient(
+            120deg,
+            rgba(107,66,181,.25),
+            transparent
+        ),
+        url("https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1200");
+
+    background-size: cover;
+    background-position: center;
+
+    isolation: isolate;
+}
+
+.left::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: rgba(150,101,245,.20);
+    filter: blur(90px);
+    border-radius: 50%;
+    top: 30%;
+    left: 20%;
+    z-index: -1;
+}
+
+.left::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+/* BRAND */
+
+.logo {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1.8px;
+
+    background: linear-gradient(
+        110deg,
+        #ffffff,
+        #d0b7ff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* LEFT TEXT */
+
+.left-text {
+    font-size: 32px;
+    line-height: 1.45;
+    font-weight: 700;
+    letter-spacing: -1px;
+
+    text-align: center;
+    padding: 0 10px 50px;
+
+    color: #ffffff;
+
+    text-shadow: 0 5px 25px rgba(0,0,0,.45);
+
+    animation: textEnter 1.2s ease both;
+}
+
+@keyframes textEnter {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RIGHT PANEL */
+
+.right {
+    flex: 1;
+    min-width: 0;
+
+    padding: 55px 48px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    color: white;
+
+    animation: formEnter 1s .15s ease both;
+}
+
+@keyframes formEnter {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* HEADING */
+
+h1 {
+    font-size: 37px;
+    font-weight: 800;
+    letter-spacing: -1.6px;
+    margin-bottom: 14px;
+    color: #fff;
+}
+
+/* SIGNUP LINK */
+
+.signup {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 38px;
+    line-height: 1.8;
+}
+
+a {
+    color: var(--purple-light);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color .3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+/* INPUT FIELDS */
+
+input {
+    width: 100%;
+    min-width: 0;
+
+    padding: 17px 16px;
+    margin-bottom: 19px;
+
+    background: rgba(255,255,255,.035);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    color: white;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+input::placeholder {
+    color: #81798e;
+}
+
+input:hover {
+    border-color: rgba(182,154,255,.35);
+}
+
+input:focus {
+    background: rgba(149,101,245,.07);
+    border-color: var(--purple);
+
+    box-shadow:
+        0 0 0 4px rgba(149,101,245,.10),
+        0 5px 25px rgba(149,101,245,.08);
+}
+
+/* PASSWORD OPTIONS */
+
+.password-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 0 2px 25px;
+
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.remember input {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    accent-color: var(--purple);
+    cursor: pointer;
+}
+
+/* LOGIN BUTTON */
+
+.login-btn {
+    width: 100%;
+    padding: 17px;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 10px;
+
+    background: linear-gradient(
+        110deg,
+        #7545d4,
+        #a06cf5,
+        #7545d4
+    );
+
+    background-size: 200% 100%;
+
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 25px rgba(117,69,212,.25);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background-position .5s ease;
+}
+
+/* BUTTON SHINE */
+
+.login-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.22),
+        transparent
+    );
+
+    transform: skewX(-25deg);
+    transition: left .65s ease;
+}
+
+.login-btn:hover::before {
+    left: 150%;
+}
+
+.login-btn:hover {
+    transform: translateY(-3px);
+    background-position: 100% 0;
+
+    box-shadow:
+        0 12px 35px rgba(149,101,245,.35);
+}
+
+.login-btn:active {
+    transform: translateY(-1px);
+}
+
+/* DIVIDER */
+
+.or {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+    margin: 30px 0;
+
+    color: #81798e;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+/* GOOGLE BUTTON */
+
+.social {
+    display: flex;
+    justify-content: center;
+}
+
+.social button {
+    width: 100%;
+    max-width: 250px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,.035);
+
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: all .3s ease;
+}
+
+.social button img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+
+    transition: transform .3s ease;
+}
+
+.social button:hover {
+    background: rgba(255,255,255,.08);
+    border-color: rgba(182,154,255,.55);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 25px rgba(149,101,245,.13);
+}
+
+.social button:hover img {
+    transform: scale(1.12);
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width: 850px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        flex-direction: column;
+    }
+
+    .left {
+        min-height: 260px;
+        padding: 25px;
+    }
+
+    .left-text {
+        font-size: 25px;
+        padding-bottom: 15px;
+    }
+
+    .right {
+        padding: 38px 30px;
+    }
+}
+
+@media(max-width: 480px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .container {
+        padding: 8px;
+        border-radius: 18px;
+    }
+
+    .left {
+        min-height: 200px;
+        padding: 22px;
+    }
+
+    .logo {
+        font-size: 29px;
+    }
+
+    .left-text {
+        font-size: 21px;
+    }
+
+    .right {
+        padding: 32px 17px;
+    }
+
+    h1 {
+        font-size: 29px;
+    }
+
+    .signup {
+        margin-bottom: 28px;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media(prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT PANEL -->
+
+    <div class="left">
+
+        <div>
+            <span class="logo">PrepAI</span>
+        </div>
+
+        <div class="left-text">
+            Welcome Back to PrepAI...
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT PANEL -->
+
+    <div class="right">
+
+        <h1>Welcome back</h1>
+
+        <p class="signup">
+            Don't have an account?
+            <a href="./frontEnd/CreateAccount/createAcc.html">Sign up</a>
+        </p>
+
+
+        <!-- LOGIN FORM -->
+
+        <form action="#" method="POST">
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+            >
+
+
+            <!-- PASSWORD OPTIONS -->
+
+            <div class="password-options">
+
+                <label class="remember">
+                    <input type="checkbox" name="remember">
+                    Remember me
+                </label>
+
+                <a href="./forgotPassword.html">
+                    Forgot password?
+                </a>
+
+            </div>
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button class="login-btn" type="submit">
+                Log in
+            </button>
+
+        </form>
+
+
+        <!-- DIVIDER -->
+
+        <p class="or">
+            ────── Or continue with ──────
+        </p>
+
+
+        <!-- GOOGLE LOGIN -->
+
+        <div class="social">
+
+            <button type="button">
+                <img
+                    src="./frontEnd/google.png"
+                    alt="Google"
+                    width="22"
+                    height="22"
+                >
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
